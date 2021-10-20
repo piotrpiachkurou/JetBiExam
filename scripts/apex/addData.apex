@@ -5,6 +5,7 @@
 // You can also execute the entire file by running the command:
 //     SFDX: Execute Anonymous Apex with Editor Contents
 
+//sample data
 List<Account> accs = new List<Account>();
 
 for(Integer i = 1; i <= 5; i++){
@@ -23,7 +24,7 @@ for (Account acc : accs){
 	for (Integer i = 1; i<=8; i++){
 		Order__c ord = new Order__c();
 		ord.Name = acc.Name + ' - ' + 'Order ' + i;
-		ord.Account__c = acc;
+		ord.Account__c = acc.Id;
 		ord.Total_Amount__c = i * 1000;
 		ord.Payment_Due_date__c = Date.today().addMonths(dates++);
 		ords.add(ord);
@@ -31,3 +32,4 @@ for (Account acc : accs){
 }
 
 upsert ords;
+
