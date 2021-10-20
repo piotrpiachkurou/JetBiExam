@@ -5,8 +5,8 @@
     <externalId>false</externalId>
     <label>Account</label>
     <referenceTo>Account</referenceTo>
-    <relationshipLabel>Orders</relationshipLabel>
-    <relationshipName>Orders</relationshipName>
+    <relationshipLabel>Order</relationshipLabel>
+    <relationshipName>Order</relationshipName>
     <required>false</required>
     <trackTrending>false</trackTrending>
     <type>Lookup</type>

@@ -1,0 +1,15 @@
+<template>
+	<template if:true={orders}>
+		<lightning-card title="Pick a Month" icon-name="custom:custom63">
+						<lightning-combobox
+							class="slds-var-p-around_small"
+							name="month"
+							label="Months"
+							value={selectedMonth}
+							placeholder="Select Month"
+							options={monthOptions}
+							onchange={handleChangeMonth}>
+						</lightning-combobox>
+		</lightning-card>
+	</template>
+</template>

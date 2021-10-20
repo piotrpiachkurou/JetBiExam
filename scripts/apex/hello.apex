@@ -5,6 +5,29 @@
 // You can also execute the entire file by running the command:
 //     SFDX: Execute Anonymous Apex with Editor Contents
 
-string tempvar = 'Enter_your_name_here';
-System.debug('Hello World!');
-System.debug('My name is ' + tempvar);
+List<Account> accs = new List<Account>();
+
+for(Integer i = 1; i <= 5; i++){
+	Account ac = new Account();
+	ac.Name = 'Account ' + i;
+	accs.add(ac);
+}
+
+upsert accs;
+
+List<Order__c> ords = new List<Order__c>();
+
+Integer dates = 1;
+
+for (Account acc : accs){
+	for (Integer i = 1; i<=8; i++){
+		Order__c ord = new Order__c();
+		ord.Name = acc.Name + ' - ' + 'Order ' + i;
+		ord.Account__c = acc;
+		ord.Total_Amount__c = i * 1000;
+		ord.Payment_Due_date__c = Date.today().addMonths(dates++);
+		ords.add(ord);
+	}
+}
+
+upsert ords;
