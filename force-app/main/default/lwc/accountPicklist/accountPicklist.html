@@ -1,0 +1,15 @@
+<template>
+	<template if:true={acccounts}>
+		<lightning-card title="Pick an Account" icon-name="custom:custom62">
+			<lightning-combobox
+				class="slds-var-p-around_small"
+				name="account"
+				label="Accounts"
+				value={selectedAcc}
+				placeholder="Select Account"
+				options={accountOptions}
+				onchange={handleChangeAcc} >
+			</lightning-combobox>
+		</lightning-card>
+	</template>
+</template>

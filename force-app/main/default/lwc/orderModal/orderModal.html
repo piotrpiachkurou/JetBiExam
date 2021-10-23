@@ -1,0 +1,39 @@
+<template>
+	<template if:true={order}>
+		<section  class="slds-modal slds-fade-in-open">
+			<div class="slds-modal__container">
+				<header class="slds-modal__header">
+					<button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeOrderModal}>
+						<lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse" size="small" ></lightning-icon>
+						</button>
+					<h2 class="slds-text-heading_medium slds-hyphenate">Order Record Detail</h2>
+				</header>
+					<div class="slds-modal__content slds-p-around_medium">
+						<table class="slds-table slds-table_bordered slds-table_col-bordered slds-table_cell-buffer">
+						<thead> 
+							<tr>
+								<th>Order Id</th>
+								<th>Order Name</th>
+								<th>Payment Due Date</th>
+								<th>Total Amount</th>
+							</tr>
+						</thead>
+						<tbody> 
+							<tr>
+								<td>{order.Id}</td>
+								<td>{order.Name}</td>
+								<td>{order.Payment_Due_date__c}</td>
+								<td>{order.Total_Amount__c}</td>
+							</tr>
+						</tbody>
+						</table>
+					</div>
+					<footer class="slds-modal__footer">
+						<lightning-button variant="brand" label="Close" title="Close"  onclick={closeOrderModal}></lightning-button>
+						<lightning-button variant="brand" label="Send Order" title="Send" onclick={sendOrder}></lightning-button>
+				</footer>
+			</div>
+		</section>
+		<div class="slds-backdrop slds-backdrop_open"></div>
+	</template>
+</template>
