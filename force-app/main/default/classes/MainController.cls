@@ -29,7 +29,7 @@ public with sharing class MainController {
 	}
 
 	@AuraEnabled(cacheable=true)
-    public static void sendEmailToCurrentUser(Order__c order){
+    public static Boolean sendEmailToCurrentUser(Order__c order){
 		String userId = UserInfo.getUserId();
 		EmailTemplate et = [SELECT Id FROM EmailTemplate WHERE Name = 'Jet BI Exam Email Template' LIMIT 1];
 
@@ -43,6 +43,7 @@ public with sharing class MainController {
 		email.setSubject(emailSubject);
 		email.setTargetObjectId(userId);
 
-		Messaging.sendEmail(new Messaging.SingleEmailMessage[] { email });
+		Messaging.SendEmailResult[] result = Messaging.sendEmail(new Messaging.SingleEmailMessage[] { email });
+		return result[0].isSuccess();
     }
 }

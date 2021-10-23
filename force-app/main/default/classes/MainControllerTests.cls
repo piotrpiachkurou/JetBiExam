@@ -25,4 +25,13 @@ public class MainControllerTests {
 		System.assertEquals('Test Order', orders[0].Name, 'Invalid order');
 		System.assertEquals(1, orders.size(), 'Should be the only one!');
 	}
+
+	@isTest static void sendEmailToCurrentUserSendsEmail(){
+		Order__c order = [SELECT Id, Name FROM Order__c WHERE Name = 'Test Order'];
+
+		System.runAs([select Id from User where Id = :Userinfo.getUserId() limit 1][0]) {
+			Boolean result = MainController.sendEmailToCurrentUser(order);
+			System.assert(result, 'email was not sent');
+		}
+	}
 }
