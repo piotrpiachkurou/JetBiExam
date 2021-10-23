@@ -17,7 +17,7 @@ public class MainControllerTests {
 		Account acc = [SELECT Id, Name FROM Account WHERE Name = 'Test Account'];
 		List<Map<String,String>> result = MainController.getAccounts();
 		System.assertEquals('Test Account', result[0].get('label'),'Invalid Account');
-		System.assertEquals(acc.Id, result[0].get('value'), 'Some error');
+		System.assertEquals(acc.Id, result[0].get('value'), 'Invalid Account');
 	}
 	@isTest static void getOrdersByIdReturnsCorrectList(){
 		Account acc = [SELECT Id, Name FROM Account WHERE Name = 'Test Account'];
