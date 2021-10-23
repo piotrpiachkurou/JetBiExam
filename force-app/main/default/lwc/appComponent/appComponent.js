@@ -25,11 +25,10 @@ export default class AppComponent extends LightningElement {
 	}
 
 	showOrderToasty(event) {
-		console.log(`from toasty`);
 		const showMsg = new ShowToastEvent({
-			title: 'Order has been sent!',
-			message: `Order Id: ${event.detail}`,
-			variant: 'success',
+			title: event.detail.title,
+			message: event.detail.message,
+			variant: event.detail.variant,
 			mode: 'dismissable'
 		});
 		this.dispatchEvent(showMsg);

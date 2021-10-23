@@ -27,18 +27,22 @@ public with sharing class MainController {
 			ORDER BY Payment_Due_date__c
         ];
 	}
+
 	@AuraEnabled(cacheable=true)
     public static void sendEmailToCurrentUser(Order__c order){
-        try{
-            Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
-			String[] toAdresses = new String[] {'privatbrun@yandex.by'};
-			mail.setToAddresses(toAdresses);
-			mail.setSenderDisplayName('Jet Bi Exam App');
-			mail.setSubject('Order sent: ' + order.Id);
-			mail.setPlainTextBody('Hello from app');
-			//Messaging.sendEmail(new Messaging.SingleEmailMessage[] {mail});
-        }catch(Exception ex){
-            throw new AuraHandledException(ex.getMessage());
-        }
+		String userId = UserInfo.getUserId();
+		EmailTemplate et = [SELECT Id FROM EmailTemplate WHERE Name = 'Jet BI Exam Email Template' LIMIT 1];
+
+		Messaging.SingleEmailMessage email = Messaging.renderStoredEmailTemplate(et.Id, userId, order.Id);
+		String emailSubject = email.getSubject();
+		String emailTextBody = email.getPlainTextBody();
+
+		email.setSenderDisplayName('Jet BI Exam App');
+		email.setSaveAsActivity(false);
+		email.setPlainTextBody(emailTextBody);
+		email.setSubject(emailSubject);
+		email.setTargetObjectId(userId);
+
+		Messaging.sendEmail(new Messaging.SingleEmailMessage[] { email });
     }
 }

@@ -8,14 +8,24 @@ export default class OrderModal extends LightningElement {
 	}
 
 	sendOrder() {
-		console.log('from send order: '+ JSON.stringify(this.order));
 		sendEmailToCurrentUser({ order: this.order })
 			.then(() => {
-				this.dispatchEvent(new CustomEvent('ordersent', { detail: this.order.Id }));
+				this.dispatchEvent(new CustomEvent('ordersent', {
+					detail: {
+						title: 'Order has been sent successfully!',
+						message: `Order Id: ${this.order.Id}.`,
+						variant: 'success',
+					}
+				}));
 			})
-			.catch(error => {
-				console.log('from catch: ' + this.order.id);
-				console.log(`${error.message}`)
+			.catch(() => {
+				this.dispatchEvent(new CustomEvent('ordersent', {
+					detail: {
+						title: 'Order sending failed!',
+						message: `Order Id: ${this.order.Id}.`,
+						variant: 'error',
+					}
+				}));
 			})
 	}
 }

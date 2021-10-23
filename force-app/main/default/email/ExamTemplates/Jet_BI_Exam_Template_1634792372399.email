@@ -3,6 +3,42 @@
   <title></title> 
  </head> 
  <body style="height: auto; min-height: auto;"> 
-  <img alt="photo_2021-10-16_01-00-39" src="{[devName:photo_20211016_010039]}" style="max-width: 681.15px; width: 192px; height: 192px;" title="photo_2021-10-16_01-00-39" />{{{Order__c.Id}}} 
+  <div style="text-align: center;"> 
+   <img alt="logo jet bi" src="{[devName:g0ofdWttaSx58BkXVL78i_vj5RQcdnL1WAO]}" style="max-width: 681.15px" title="g-0ofdWttaSx5-8BkXVL78i_vj5RQcdnL1WAOkKbUj7b6uwdZ839HXOYwvNEh3TQbZROmg" /> 
+  </div> 
+  <center> 
+   <table> 
+    <tbody> 
+     <tr> 
+      <td width="600"> 
+       <div style="max-width:600px; margin:0 auto;"> 
+        <div style="text-align: center;">
+          Hi, {{{Recipient.Name}}}! 
+         <br /> &nbsp; 
+        </div> 
+        <div style="text-align: center;">
+          Your order info: 
+         <br /> &nbsp; 
+        </div> 
+        <div style="text-align: center;"> 
+         <b>Payment Due Date:</b> 
+        </div> 
+        <div style="text-align: center;">
+          {{{Order__c.Payment_Due_date__c}}} 
+        </div> 
+        <div style="text-align: center;">
+          &nbsp; 
+        </div> 
+        <div style="text-align: center;"> 
+         <b>Total Amount:</b> 
+        </div> 
+        <div style="text-align: center;">
+          ${{{Order__c.Total_Amount__c}}} 
+        </div> 
+       </div> </td> 
+     </tr> 
+    </tbody> 
+   </table> 
+  </center> 
  </body>
 </html>
