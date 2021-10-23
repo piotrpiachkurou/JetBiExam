@@ -14,7 +14,7 @@ public class MainControllerTests {
 		insert ord;
 	}
 
-	@isTest static void getAccountsReturnsMap(){
+	@IsTest static void getAccountsReturnsMap(){
 		Account acc = [SELECT Id, Name FROM Account WHERE Name = 'Test Account'];
 		List<Map<String,String>> result = MainController.getAccounts();
 		System.assertEquals('Test Account', result[0].get('label'),'Invalid Account');
