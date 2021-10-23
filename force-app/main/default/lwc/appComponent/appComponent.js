@@ -1,5 +1,5 @@
 import { LightningElement, api, track } from 'lwc';
-
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 export default class AppComponent extends LightningElement {
 	@api accountId;
 	@track ordersList;
@@ -20,7 +20,19 @@ export default class AppComponent extends LightningElement {
 		this.showModal = true;
 	}
 
-	closeOrderModal(){
+	closeOrderModal() {
 		this.showModal = false;
+	}
+
+	showOrderToasty(event) {
+		console.log(`from toasty`);
+		const showMsg = new ShowToastEvent({
+			title: 'Order has been sent!',
+			message: `Order Id: ${event.detail}`,
+			variant: 'success',
+			mode: 'dismissable'
+		});
+		this.dispatchEvent(showMsg);
+		this.closeOrderModal();
 	}
 }

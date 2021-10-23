@@ -10,7 +10,6 @@ export default class OrdersList extends LightningElement {
 
 	handleView(event) {
 		const dataRow = event.detail.row;
-		window.console.log('dataRow ' + JSON.stringify(dataRow));
 		this.dispatchEvent(new CustomEvent('viewclicked', {detail: dataRow}))
 	}
 

@@ -16,7 +16,8 @@
 	<template if:true={showModal}>
 		<c-order-modal
 			order={orderToView}
-			oncloseclick={closeOrderModal}>
+			oncloseclick={closeOrderModal}
+			onordersent={showOrderToasty}>
 		</c-order-modal>
 	</template>
 </template>
