@@ -13,12 +13,14 @@ public class MainControllerTests {
 		ord.Account__c = acc.Id;
 		insert ord;
 	}
+
 	@isTest static void getAccountsReturnsMap(){
 		Account acc = [SELECT Id, Name FROM Account WHERE Name = 'Test Account'];
 		List<Map<String,String>> result = MainController.getAccounts();
 		System.assertEquals('Test Account', result[0].get('label'),'Invalid Account');
 		System.assertEquals(acc.Id, result[0].get('value'), 'Some error');
 	}
+
 	@isTest static void getOrdersByIdReturnsCorrectList(){
 		Account acc = [SELECT Id, Name FROM Account WHERE Name = 'Test Account'];
 		List<Order__c> orders = MainController.getOrdersByAccId(acc.Id);
@@ -28,7 +30,6 @@ public class MainControllerTests {
 
 	@isTest static void sendEmailToCurrentUserSendsEmail(){
 		Order__c order = [SELECT Id, Name FROM Order__c WHERE Name = 'Test Order'];
-
 		System.runAs([select Id from User where Id = :Userinfo.getUserId() limit 1][0]) {
 			Boolean result = MainController.sendEmailToCurrentUser(order);
 			System.assert(result, 'email was not sent');
