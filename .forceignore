@@ -7,5 +7,3 @@ package.xml
 **/.eslintrc.json
 # LWC Jest
 **/__tests__/**
-# Profiles
-**/profiles
