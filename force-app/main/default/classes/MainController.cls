@@ -29,11 +29,11 @@ public with sharing class MainController {
 	}
 
 	@AuraEnabled(cacheable=true)
-    public static Boolean sendEmailToCurrentUser(Order__c order){
+    public static Boolean sendEmailToCurrentUser(Id orderId){
 		String userId = UserInfo.getUserId();
 		EmailTemplate et = [SELECT Id FROM EmailTemplate WHERE Name = 'Jet BI Exam Email Template' LIMIT 1];
 
-		Messaging.SingleEmailMessage email = Messaging.renderStoredEmailTemplate(et.Id, userId, order.Id);
+		Messaging.SingleEmailMessage email = Messaging.renderStoredEmailTemplate(et.Id, userId, orderId);
 		String emailSubject = email.getSubject();
 		String emailTextBody = email.getPlainTextBody();
 
