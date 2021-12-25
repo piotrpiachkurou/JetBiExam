@@ -4,6 +4,7 @@
         <itemInstances>
             <componentInstance>
                 <componentName>appComponent</componentName>
+                <identifier>c_appComponent1</identifier>
             </componentInstance>
         </itemInstances>
         <name>top</name>

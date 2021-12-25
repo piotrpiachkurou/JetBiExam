@@ -1,6 +1,5 @@
 import { LightningElement, api, track } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
-import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 export default class AppComponent extends NavigationMixin(LightningElement) {
 	@api accountId;
 	@track ordersList;
@@ -26,20 +25,5 @@ export default class AppComponent extends NavigationMixin(LightningElement) {
 				"actionName": "view"
 			},
 		});
-	}
-	
-	closeOrderModal() {
-		this.showModal = false;
-	}
-	
-	showOrderToasty(event) {
-		const showMsg = new ShowToastEvent({
-			title: event.detail.title,
-			message: event.detail.message,
-			variant: event.detail.variant,
-			mode: 'dismissable'
-		});
-		this.dispatchEvent(showMsg);
-		this.closeOrderModal();
 	}
 }
