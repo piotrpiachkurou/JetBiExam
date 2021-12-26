@@ -30,7 +30,7 @@ public class MainControllerTests {
 		Order__c order = [SELECT Id, Name FROM Order__c WHERE Name = 'Test Order'];
 
 		System.runAs([select Id from User where Id = :Userinfo.getUserId() limit 1][0]) {
-			Boolean result = MainController.sendEmailToCurrentUser(order);
+			Boolean result = MainController.sendEmailToCurrentUser(order.Id);
 			System.assert(result, 'email was not sent');
 		}
 	}
