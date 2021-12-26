@@ -1,14 +1,13 @@
 <template>
-	<template if:true={showTable}>
-		<h2 id="element-with-table-label" class="slds-text-heading_medium slds-var-m-bottom_xx-small">Orders list</h2>
-			<div style="height: auto">
-				<lightning-datatable
+	<h2 id="element-with-table-label" class="slds-text-heading_medium slds-var-m-bottom_xx-small">Orders list</h2>
+		<div style="height: auto">
+			<lightning-datatable
 				key-field="Id"
 				data={sortedOrders}
 				columns={columns}
 				hide-checkbox-column="true"
-				onrowaction={handleView}>
-				</lightning-datatable>
-			</div>
-	</template>
+				onrowaction={handleView}
+			>
+			</lightning-datatable>
+		</div>
 </template>

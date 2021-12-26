@@ -1,0 +1,43 @@
+<template>
+		<lightning-card title="Pick an Account" icon-name="custom:custom62">
+            <lightning-spinner if:false={accounts.data}></lightning-spinner>
+            <template if:true={accounts.data}>
+                <div class="containter">
+                    <lightning-layout pull-to-boundary="medium">
+
+                        <lightning-layout-item flexibility="auto" padding="horizontal-medium">
+                            <lightning-combobox
+                                name="account"
+                                label="Accounts"
+                                placeholder="Select Account"
+                                value={selectedAccountId}
+                                options={accounts.data}
+                                onchange={changeAccount}
+                                class="slds-var-p-around_small"
+                            >
+                            </lightning-combobox>
+                        </lightning-layout-item>
+    
+                        <lightning-layout-item flexibility="auto" padding="horizontal-medium">
+                            <lightning-combobox
+                                name="month"
+                                label="Months"
+                                placeholder="Select Month"
+                                value={selectedMonth}
+                                options={monthOptions}
+                                onchange={changeMonth}
+                                class="slds-var-p-around_small"
+                            >
+                            </lightning-combobox>
+                        </lightning-layout-item>
+
+                    </lightning-layout>
+                </div>
+            </template>
+
+            <template if:true={accounts.error}>
+                <c-error-panel errors={accounts.error}></c-error-panel>
+            </template>
+
+        </lightning-card>
+</template>

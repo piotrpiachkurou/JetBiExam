@@ -1,16 +1,15 @@
 <template>
 	<div class="slds-grid slds-gutters">
-		<c-account-picklist class="slds-col"
-			onpicked={setAccount}>
-		</c-account-picklist>
-		<c-month-picklist class="slds-col"
-			picked-acc-id={accountId}
+		<c-picklists  class="slds-col"
+			onpicked={setOrdersList}
 			onordersloaded={setOrdersList}
-			onpicked={setOrdersList}>
-		</c-month-picklist>
+		>
+		</c-picklists>
 	</div>
-	<c-orders-list
-		sorted-orders={ordersList}
-		onviewclicked={handleViewClicked}>
-	</c-orders-list>
+	<template if:true={ordersList}>
+		<c-orders-list
+			sorted-orders={ordersList}
+			onviewclicked={handleViewClicked}>
+		</c-orders-list>
+	</template>
 </template>

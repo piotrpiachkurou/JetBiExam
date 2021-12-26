@@ -1,7 +1,6 @@
 import { LightningElement, api, track } from 'lwc';
 
 export default class OrdersList extends LightningElement {
-
 	@api sortedOrders;
 
 	@api get showTable() {
