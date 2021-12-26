@@ -12,12 +12,10 @@ export default class Picklists extends LightningElement {
 
     changeAccount(event) {
         this.selectedAccountId = event.detail.value;
-        console.log('value >>', this.selectedAccountId);
         getOrdersByAccId({ accId: this.selectedAccountId })
         .then(result => {
             this.accountOrders = result;
 			this.dispatchEvent(new CustomEvent('ordersloaded', { detail: this.accountOrders}));
-            console.log('orders >>', JSON.stringify(this.accountOrders));
         })
         .catch(error => this.error = error);
         this.resetSelectedMonth();
@@ -26,7 +24,6 @@ export default class Picklists extends LightningElement {
     changeMonth(event) {
         let pickedEvent;
 		this.selectedMonth = event.detail.value;
-        console.log('month >>', this.selectedMonth);
 		if (this.selectedMonth > 0) {
 			pickedEvent = new CustomEvent('picked', {
 				detail: this.accountOrders.filter(order =>

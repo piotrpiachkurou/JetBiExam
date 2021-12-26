@@ -16,10 +16,11 @@ export default class SendOrder extends LightningElement {
             });
             this.dispatchEvent(showMsg);
         })
-        .catch(() => {
+        .catch((error) => {
+            console.log(JSON.stringify(error));
             const showMsg = new ShowToastEvent({
                 title: 'Order sending failed!',
-                message: `Order Id: ${this.recordId}.`,
+                message: `${error.body.message}`,
                 variant: 'error',
                 mode: 'dismissable'
             })

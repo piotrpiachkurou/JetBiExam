@@ -30,20 +30,23 @@ public with sharing class MainController {
 
 	@AuraEnabled(cacheable=true)
     public static Boolean sendEmailToCurrentUser(Id orderId){
-		String userId = UserInfo.getUserId();
-		EmailTemplate et = [SELECT Id FROM EmailTemplate WHERE Name = 'Jet BI Exam Email Template' LIMIT 1];
-
-		Messaging.SingleEmailMessage email = Messaging.renderStoredEmailTemplate(et.Id, userId, orderId);
-		String emailSubject = email.getSubject();
-		String emailTextBody = email.getPlainTextBody();
-
-		email.setSenderDisplayName('Jet BI Exam App');
-		email.setSaveAsActivity(false);
-		email.setPlainTextBody(emailTextBody);
-		email.setSubject(emailSubject);
-		email.setTargetObjectId(userId);
-
-		Messaging.SendEmailResult[] result = Messaging.sendEmail(new Messaging.SingleEmailMessage[] { email });
-		return result[0].isSuccess();
+		try {
+			String userId = UserInfo.getUserId();
+			EmailTemplate et = [SELECT Id FROM EmailTemplate WHERE Name = 'Jet BI Exam Email Template' LIMIT 1];
+			Messaging.SingleEmailMessage email = Messaging.renderStoredEmailTemplate(et.Id, userId, orderId);
+			String emailSubject = email.getSubject();
+			String emailTextBody = email.getPlainTextBody();
+	
+			email.setSenderDisplayName('Jet BI Exam App');
+			email.setSaveAsActivity(false);
+			email.setPlainTextBody(emailTextBody);
+			email.setSubject(emailSubject);
+			email.setTargetObjectId(userId);
+	
+			Messaging.SendEmailResult[] result = Messaging.sendEmail(new Messaging.SingleEmailMessage[] { email });
+			return result[0].isSuccess();
+		} catch (Exception e) {
+			throw new AuraHandledException(e.getMessage());
+		}
     }
 }
