@@ -32,12 +32,12 @@ public with sharing class MainController {
     public static Boolean sendEmailToCurrentUser(Id orderId){
 		try {
 			String userId = UserInfo.getUserId();
-			EmailTemplate et = [SELECT Id FROM EmailTemplate WHERE Name = 'Jet BI Exam Email Template' LIMIT 1];
+			EmailTemplate et = [SELECT Id FROM EmailTemplate WHERE Name = :System.Label.Email_template_name LIMIT 1];
 			Messaging.SingleEmailMessage email = Messaging.renderStoredEmailTemplate(et.Id, userId, orderId);
 			String emailSubject = email.getSubject();
 			String emailTextBody = email.getPlainTextBody();
 	
-			email.setSenderDisplayName('Jet BI Exam App');
+			email.setSenderDisplayName(Label.App_name);
 			email.setSaveAsActivity(false);
 			email.setPlainTextBody(emailTextBody);
 			email.setSubject(emailSubject);
